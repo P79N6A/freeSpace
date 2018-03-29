@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
-from utils.check_code import create_validate_code
+# from utils.check_code import create_validate_code
+from validateCodeTool import create_validate_code
 from utils.password_md5 import get_hash
 from utils.current_user import get_current_user_name,get_current_user_object
 from utils.xss import XSSFilter

@@ -8,3 +8,4 @@ PyMySQL==0.7.11
 pytz==2017.2
 qrcode==5.3
 six==1.10.0
+validateCodeTool==1.0.0

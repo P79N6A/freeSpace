@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'HSTDbbs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DjangoJQ',
+        'NAME': 'djangodb',
         'USER': "root",
-        "PASSWORD":"hhh",
+        "PASSWORD":"pqc19960320",
         "HOST":"127.0.0.1",
         "PORT":"3306"
     }
