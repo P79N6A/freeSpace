@@ -1,0 +1,23 @@
+
+#form{
+    width: 710px;
+    margin: 50px auto;
+    border: 1px solid grey;
+    padding: 10px 20px 50px 20px;
+    border-radius: 10px;
+}
+#blog_title ,#blog_tags{
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    height: 25px;
+    width: 710px;
+    background: white;
+    text-indent: 5px;
+}
+#form .choices{
+    float: right;
+    font-size: 12px;
+}
+#button_set label{
+   font-size: 12px;
+}

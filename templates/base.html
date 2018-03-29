@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery.ui.css">
+    <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/plugins/summernote/dist/summernote.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/mycss/for_base.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico"/>
+
+    {% block css %}{% endblock %}
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">华师ＢＢＳ</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/index.html/">首页</a></li>
+                <li><a href="#write" data-toggle="modal">写文章</a>
+                <li><a href="#question" data-toggle="modal">提问题</a>
+                <li><a href="/all_blog/">全站博文</a>
+                <li><a href="/all_question/">全站提问</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form class="navbar-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <ul id="nologined" class="nav navbar-nav navbar-right">
+                    <li><a href="#login" data-toggle="modal">登录</a></li>
+                    <li><a href="#register" data-toggle="modal">注册</a></li>
+                </ul>
+                <ul id="logined" class="nav navbar-nav navbar-right" style="display: none">
+                    <li><img src="{% block avatarurl %}{% endblock %}" style="width: 40px;height: 40px;margin-top: 5px"
+                             class="img-rounded"></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.nickname }}
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/personal_backend/{% block personal_backend_id %}{% endblock %}/tab1.html/">我的空间</a>
+                            </li>
+                            <li><a id="logout" href="#">退出</a></li>
+                        </ul>
+                </ul>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</div>
+
+<!--注册-->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="reg_form">
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2  control-label" for="reg_nickname">用户名</label>
+                        <div class="col-sm-8">
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <input id="reg_nickname" type="text" name="nickname" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="reg_email">邮箱</label>
+                        <div class="col-sm-8">
+                            <span class="glyphicon glyphicon-envelope form-control-feedback "></span>
+                            <input id="reg_email" type="email" name="email" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="pwd1">密码</label>
+                        <div class="col-sm-8">
+                             <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                            <input id="pwd1" type="password" name="password1" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="pwd2">确认密码</label>
+                        <div class="col-sm-8">
+                             <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                            <input id="pwd2" type="password" name="password2" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>
+                        <div class="col-sm-4">
+                             <span class="glyphicon glyphicon-cog form-control-feedback "></span>
+                            <input id="reg_checkcode" name="checkcode" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <div class="col-sm-4">
+                                <img src="/check_code.html/" id="img_check_reg">
+                            </div>
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div style="text-indent: 335px">点击图片更换验证码</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="register_now" type="button" class="btn btn-primary">马上注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--登录-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel2">用户登录</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="log_form">
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2  control-label" for="log_nickname">用户名</label>
+                        <div class="col-sm-8">
+                            <input id="log_nickname" type="text" name="nickname" class="form-control">
+                             <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="pwd3">密码</label>
+                        <div class="col-sm-8">
+                            <input id="pwd3" type="password" name="password" class="form-control">
+                             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>
+                        <div class="col-sm-4">
+                            <input id="log_checkcode" name="checkcode" type="text" class="form-control">
+                            <span class="glyphicon glyphicon-cog form-control-feedback"></span>
+                        </div>
+                        <div>
+                            <div class="col-sm-4">
+                                <img src="/check_code.html/" id="img_check_reg">
+                            </div>
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div style="text-indent: 335px">点击图片更换验证码</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="login_now" type="button" class="btn btn-primary">立即登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--写博客-->
+<div class="modal fade" id="write" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel5">创作博客</h4>
+            </div>
+            <div class="modal-body">
+                <form id="writeblog_form" role="form">
+                    <div class="form-group">
+                        <label class="control-label" for="blog_title">博客标题<span id="title_err" style="font-size: 10px;color: red"></span></label><br>
+                        <div>
+                            <input id="blog_title" type="text" name="blog_title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">博客内容<span id="content_err" style="font-size: 10px;color: red"></span></label>
+                        <div class="controls">
+                            <textarea id="blog_content" name="blog_content"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="control-group">
+                        <label class="control-label" for="blog_tags">博客标签<span id="tags_err" style="font-size: 10px;color: red"></span></label>
+                        <div>
+                            <input id="blog_tags" type="text" name="blog_tags" class="form-control">
+                            <span class="help-inline" style="font-size: 10px;color: brown">标签与标签间用空格分割,每个标签小于２０个字符，不合法标签将被滤去！</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                        <label class="control-label">是否公开本篇博客？</label>
+                        <div>
+                            <div class="radio">
+                                <label class="radio-inline">
+                                    <input type="radio" name="open" id="yes" value="y" checked="checked">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="open" id="no" value="n">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="star">*</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="submit_now" type="button" class="btn btn-primary ">发布</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--提问-->
+<div class="modal fade" id="question" tabindex="-1" role="dialog" aria-labelledby="myModalLabel8" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel8">提问</h4>
+            </div>
+            <div class="modal-body">
+                <form id="question_form" role="form">
+                    <div class="form-group">
+                         <label class="control-label">问题标题<span id="qu_title_err" style="font-size: 10px;color: red"></span></label>
+                        <div>
+                            <input id="qu_title" type="text" name="qu_title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label">问题详情<span id="qu_content_err" style="font-size: 10px;color: red"></span></label>
+                        <div class="controls">
+                             <textarea id="qu_content" name="qu_content"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="control-group">
+                         <label class="control-label">问题标签<span id="qu_tags_err" style="font-size: 10px;color: red"></span></label>
+                        <div>
+                           <input id="qu_tags" type="text" name="qu_tags" class="form-control">
+                            <span class="help-inline" style="font-size: 10px;color: brown">标签与标签间用空格分割,每个标签小于２０个字符，不合法标签将被滤去！</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="qu_submit_now" type="button" class="btn btn-primary ">发布</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+
+
+<script type="text/javascript" src="/static/js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.ui.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/kindeditor/kindeditor-all-min.js"></script>
+    <script type="text/javascript" src="/static/plugins/summernote/dist/summernote.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/myjs/for_base.js"></script>
+    {% block js %}{% endblock %}
+<div id="error">请登录后操作！</div>
+<div id="loading">数据交互中...</div>
+</body>
+</html>

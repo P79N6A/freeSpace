@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block title %}华师BBS－个人空间{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-fileinput/css/fileinput.min.css">
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/static/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="/static/js/myjs/for_personal_backend.js"></script>
+{% endblock %}
+{% block avatarurl %}{{ user.avatar }}{% endblock %}
+{% block personal_backend_id %}{{ user.id }}{% endblock %}
+{% block content %}
+
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li id="tab1"><a href="/personal_backend/{{ user.id }}/tab1.html/">我的资料</a></li>
+            <li id="tab2"><a href="/personal_backend/{{ user.id }}/tab2.html/">我的博客</a></li>
+            <li id="tab3"><a href="/personal_backend/{{ user.id }}/tab3.html/">我的问题</a></li>
+            <li id="tab4"><a href="/personal_backend/{{ user.id }}/tab4.html/">我的关注</a></li>
+          </ul>
+        </div>
+
+
+
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<input type="text" style="display: none" value="{{ flag }}" id="flag">
+
+            {% block tab_content %}{% endblock %}
+
+ </div>
+      </div>
+      </div>
+{% endblock %}

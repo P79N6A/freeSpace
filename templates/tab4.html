@@ -1,0 +1,17 @@
+{% extends "personal_backend.html" %}
+{% block tab_content %}
+<h2 class="page-header">{{ user.nickname }}&nbsp;&nbsp;<small>全部关注</small></h2>
+    <h1>我的粉丝</h1>
+{% for fan in followme %}
+    {{ fan.nickname }}<br>
+{% endfor %}
+
+    <h1>我关注的人</h1>
+{% for fan in mefollow %}
+    {{ fan.nickname }}<br>
+{% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}华师BBS－主页{% endblock %}
+{% block css %}{% endblock %}
+{% block js %}{% endblock %}
+{% block avatarurl %}{{ user.avatar }}{% endblock %}
+{% block personal_backend_id %}{{ user.id }}{% endblock %}
+{% block content %}
+
+<div class="container">
+<div class="col-md-6">
+    <h1 class="page-header">全站博文</h1>
+
+{% for blog in blogs %}
+<h3 class="page-header"><a href="/blog_detail/{{ blog.id }}.html/">{{ blog.botitle }}</a></h3>
+ <div>{{ blog.bocontent|safe|truncatechars:30 }}</div>
+{% endfor %}
+</div>
+
+<div class="col-md-6">
+<h1 class="page-header">全站提问</h1>
+{% for question in questions %}
+<h3 class="page-header"><a>{{ question.qttitle }}</a></h3>
+    <div>"{{ question.qtdetail|safe|truncatechars:30 }}</div>
+ {% endfor %}
+</div>
+
+</div>
+
+{% endblock %}

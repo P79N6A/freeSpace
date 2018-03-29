@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}华师BBS－博客详情{% endblock %}
+{% block css %}{% endblock %}
+{% block js %}
+{% endblock %}
+{% block avatarurl %}{{ user.avatar }}{% endblock %}
+{% block personal_backend_id %}{{ user.id }}{% endblock %}
+{% block content %}
+
+{% for question in questions %}
+    <h3 class="page-header">{{ question.qttitle }}</h3>
+    {% endfor %}
+
+
+
+{% endblock %}

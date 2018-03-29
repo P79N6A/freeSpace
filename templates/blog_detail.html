@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}华师BBS－博客详情{% endblock %}
+{% block css %}{% endblock %}
+{% block js %}
+    <script>
+    $(function () {
+
+     $("#up").click(function () {
+            $.ajax({
+                url: "/blog_detail/up_down/{{ blog.id }}.html/",
+                type: "POST",
+                data: {"type": "up"},
+                success: function (data) {
+                    if (data === "ok") {
+                        //location.reload()
+                        $("#up").attr("src","/static/img/good1.png");
+                         var count= eval(document.getElementById("noup").innerText);
+                        $("#noup").text(count+1)
+                    }
+                    else {
+                        alert(data)
+                    }
+                }
+            })
+        });
+
+          $("#down").click(function () {
+            $.ajax({
+                url: "/blog_detail/up_down/{{ blog.id }}.html/",
+                type: "POST",
+                data: {"type": "down"},
+                success: function (data) {
+                    if (data === "ok") {
+                        $("#down").attr("src","/static/img/bad2.png");
+                        var count= eval(document.getElementById("nodown").innerText);
+                        $("#nodown").text(count+1)
+
+                    }
+                    else {
+                        alert(data)
+                    }
+                }
+            })
+        });
+
+});
+    </script>
+{% endblock %}
+{% block avatarurl %}{{ user.avatar }}{% endblock %}
+{% block personal_backend_id %}{{ user.id }}{% endblock %}
+{% block content %}
+
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <span>{{ blog.user.nickname }}发表于{{ blog.create_time|date:"Y-m-d H:i:s"}}&nbsp;&nbsp;&nbsp;阅读&nbsp;<span class="badge btn-primary">{{ blog.view_count }}</span></span>
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <span>
+     {% if if_up_already %}
+     <img id="up" src="/static/img/good1.png" width="20px" height="20px">&nbsp;<span class="badge">{{ up_count }}</span>
+        {% else %}
+         <img id="up" src="/static/img/good2.png" width="20px" height="20px">&nbsp;<span class="badge" id="noup">{{ up_count }}</span>
+        {% endif %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     {% if if_down_already %}
+         <img id="down"  src="/static/img/bad2.png" width="20px" height="20px">&nbsp;<span class="badge">{{down_count}}</span>
+     {% else %}
+        <img id="down"  src="/static/img/bad1.png" width="20px" height="20px">&nbsp;<span class="badge" id="nodown">{{down_count}}</span>
+     {% endif %}
+</span>
+<br/><br><br>
+    <div class="alert alert-info" role="alert">
+    <span style="font-size: 25px;font-weight: bolder">{{ blog.botitle }}</span>
+     {% for tag in tags %}
+        <span class="badge">{{ tag.tagname }}</span>
+        {% endfor %}
+    </div>
+    {{ blog.bocontent|safe }}
+
+
+
+    </div>
+    <div class="col-sm-3 col-md-2 sidebar">
+        <h3>About Author</h3>
+        <img src="{{ blog.user.avatar }}" width="50px" height="50px" class="img-rounded">&male;
+        <br><br><strong>昵称：</strong>{{ blog.user.nickname }}
+        <br><br><strong>关注：</strong><span class="badge-info badge">{{ blog.user.follow_count }}</span>
+        <br><br><strong>粉丝：</strong><span class="badge badge-important">{{ blog.user.fans_count }}</span>
+        <br><br><strong>所在地：</strong>{{ blog.user.address }}
+        <br><br><strong>个性签名：</strong>{{ blog.user.signature }}<br><br>
+        {% if user.id != blog.user.id %}
+        {% if if_follow %}
+        <a href="/unfollow/{{ blog.user.id }}/{{ blog.id }}.html/" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-minus"></span>取消关注</a>
+        {% else %}
+        <a href="/follow/{{ blog.user.id }}/{{ blog.id }}.html/" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>关注TA</a>
+        {% endif %}
+        <a href="#" class="btn btn-success btn-sm">
+            <span class="glyphicon glyphicon-envelope"></span>发私信</a>
+    {% endif %}
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

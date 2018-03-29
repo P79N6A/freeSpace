@@ -1,0 +1,41 @@
+
+{% extends "personal_backend.html" %}
+
+{% block tab_content %}
+    <h2 class="page-header">{{ user.nickname }}&nbsp;&nbsp;<small>全部提问</small></h2>
+
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>标题</th>
+      <th>发布日期</th>
+      <th>浏览量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+ <tbody>
+
+      {% for question in questions %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+     {% if question.qttitle|length < 10 %}
+    <td>{{ question.qttitle}}</td>
+    {% else %}
+    <td>{{ question.qttitle|truncatechars:"12"}}</td>
+    {% endif %}
+    <td>{{ question.create_time|date:"Y-m-d H:i:s" }}</td>
+
+    <td>11111</td>
+    <td>
+        <a class="btn btn-danger" href="/delete/{{ post.id }}.html/">删除</a>
+        <a class="btn btn-info" href="/change_status/{{ post.id }}.html/">切换状态</a>
+        <a class="btn btn-success">编辑</a>
+    </td>
+  </tr>
+  {% endfor %}
+ </tbody>
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "personal_backend.html" %}
+{% block tab_content %}
+
+    <!--个人资料展示-->
+ <h2 class="page-header">{{ user.nickname }}&nbsp;&nbsp;<small>个人资料</small></h2>
+    <div class="col-md-4">
+        <a href="#avatar" data-toggle="modal"><img src="{{ user.avatar }}" style="width: 250px;height: 260px" class="img-thumbnail" id="touxiang"></a>
+        <br><br><p><span class="glyphicon glyphicon-warning-sign text-primary"></span>点击图片，更换头像</p>
+    </div>
+    <div class="col-md-8">
+        <p>
+            <b>邮箱</b><br>
+            <span>{{ user.email }}</span>
+        </p>
+        <p>
+            <b>加入时间</b><br>
+            <span>{{ user.join_time|date:"Y-m-d H:i:s" }}</span>
+        </p>
+        <p>
+            <b>性别</b><br>
+            {% if user.sex %}
+                <span>男</span>
+            {% else %}
+                <span>女</span>
+            {% endif %}
+        </p>
+        <p>
+            <b>地址</b><br>
+            <span>{{ user.address }}</span>
+        </p>
+        <p>
+            <b>签名</b><br>
+            <span>{{ user.signature }}</span>
+        </p>
+        <a href="#edit" data-toggle="modal" class="btn btn-primary">编辑个人信息</a>
+            </div>
+
+<!--编辑资料-->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                            class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel4">资料编辑</h4>
+                </div>
+                <input type="text" id="ffffff" value="{{ user.sex }}" class="hide">
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="edit_form" action="/editprofile/{{ user.id }}.html/"
+                          method="post">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="edit_email">邮箱</label>
+                            <div class="col-sm-8">
+                                <input id="edit_email" type="text" name="email" value="{{ user.email }}"
+                                       class="form-control">
+                            </div>
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label">性别</label>
+                            <div class="col-sm-8">
+                                <div class="radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" id="male" value="male">
+                                        男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" id="female" value="female">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label" for="edit_address">所在地</label>
+                            <div class="col-sm-8">
+                                <input id="edit_address" class="form-control" type="text" name="address"
+                                       value="{{ user.address }}">
+                            </div>
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label" for="edit_signature">签名</label>
+                            <div class="col-sm-8">
+                                <textarea id="edit_signature" name="signature"
+                                          class="form-control">{{ user.signature }}</textarea>
+                            </div>
+
+                            <div class="col-sm-1">
+                                <span class="star">*</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="edit_now" type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--上传头像-->
+    <div class="modal fade" id="avatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span
+                            class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+                    <div class="modal-body">
+                        <form method="POST" action="/upload_avatar.html/" enctype="multipart/form-data" id="imgform">
+                            <input id="file-Portrait" name="avatar_img" type="file" class="img-file"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

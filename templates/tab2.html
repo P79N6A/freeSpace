@@ -1,0 +1,44 @@
+{% extends "personal_backend.html" %}
+{% block tab_content %}
+
+<h2 class="page-header">{{ user.nickname }}&nbsp;&nbsp;<small>全部博客</small></h2>
+ <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>标题</th>
+      <th>发布日期</th>
+      <th>状态</th>
+      <th>赞</th>
+      <th>踩</th>
+      <th>浏览量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+ <tbody>
+
+      {% for post in posts %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td><a href="/blog_detail/{{ post.id }}.html/">{{ post.botitle|truncatechars:"12" }}</a></td>
+    <td>{{ post.create_time|date:"Y-m-d H:i:s" }}</td>
+    {% if post.is_open %}
+    <td>已公开</td>
+    {% else %}
+    <td>未公开</td>
+    {% endif %}
+    <td>{{ post.up_count }}</td>
+    <td>{{ post.down_count }}</td>
+    <td>{{ post.view_count }}</td>
+    <td>
+        <a class="btn btn-danger" href="/delete/{{ post.id }}.html/">删除</a>
+        <a class="btn btn-info" href="/change_status/{{ post.id }}.html/">切换状态</a>
+        <a class="btn btn-success">编辑</a>
+    </td>
+  </tr>
+  {% endfor %}
+ </tbody>
+</table>
+
+
+{% endblock %}

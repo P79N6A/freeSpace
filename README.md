@@ -1,2 +1,2 @@
-# blog-site
-a blog website driven by django.
+# DjangoBlog
+A blog based on django and mysql
