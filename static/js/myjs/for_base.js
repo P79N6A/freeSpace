@@ -141,7 +141,7 @@ $(function () {
             password1: {required: "密码不得为空！", minlength: jQuery.format("密码不得少于{0}位！")},
             password2: {required: "密码确认不能为空！", equalTo: "两次密码必须一致！"},
             email: {email: "请输入正确格式的电子邮件！", required: "邮箱不得为空！"},
-            checkcode: {required: "验证码不得为空！", checkcode4: "请正确填写验证码！", remote: "验证码错误！"}
+            // checkcode: {required: "验证码不得为空！", checkcode4: "请正确填写验证码！", remote: "验证码错误！"}
         },
 
         //验证不通过时调用的函数
@@ -210,17 +210,17 @@ $(function () {
                     }
                 }
             },
-            checkcode: {
-                required: true, checkcode4: true, remote: {
-                    url: '/is_check.html/',
-                    type: 'POST'
-                }
-            }
+            // checkcode: {
+            //     required: true, checkcode4: true, remote: {
+            //         url: '/is_check.html/',
+            //         type: 'POST'
+            //     }
+            // }
         },
         messages: {
             nickname: {required: '昵称不得为空!', rangelength: jQuery.format('昵称必须在{0}-{1}位之间!')},
             password: {required: "密码不得为空！", minlength: jQuery.format("密码不得少于{0}位！"), remote: "用户名或密码不正确！"},
-            checkcode: {required: "验证码不得为空！", checkcode4: "请正确填写验证码！", remote: "验证码错误！"}
+            // checkcode: {required: "验证码不得为空！", checkcode4: "请正确填写验证码！", remote: "验证码错误！"}
         },
 
         //验证不通过时调用的函数
@@ -354,7 +354,23 @@ $(function () {
         });
     });
 
+ $('#question_about').summernote({
+           height: 100,
+            width:700,
+            tabsize: 0,
+            lang: 'zh-CN',
+            toolbar: [
+        // [groupName, [list of button]]
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['view', ['fullscreen']]
+      ],
 
+        });
 
 
 

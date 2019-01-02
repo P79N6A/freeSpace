@@ -1,22 +1,25 @@
 from django.utils.safestring import mark_safe
 
+
 class Page:
 
-    def __init__(self,current_page,data_count,per_page_count=10,pager_num=7):
+    def __init__(self, current_page, data_count, per_page_count=10, pager_num=7):
         self.current_page = current_page
         self.data_count = data_count
         self.per_page_count = per_page_count
         self.pager_num = pager_num
+
     @property
     def start(self):
-        return (self.current_page-1) * self.per_page_count
+        return (self.current_page - 1) * self.per_page_count
+
     @property
     def end(self):
         return self.current_page * self.per_page_count
 
     @property
     def total_count(self):
-        v,y = divmod(self.data_count, self.per_page_count)
+        v, y = divmod(self.data_count, self.per_page_count)
         if y:
             v += 1
         return v
@@ -28,33 +31,33 @@ class Page:
             start_index = 1
             end_index = self.total_count + 1
         else:
-            if self.current_page <= (self.pager_num+1)/2:
+            if self.current_page <= (self.pager_num + 1) / 2:
                 start_index = 1
                 end_index = self.pager_num + 1
             else:
-                start_index = self.current_page - (self.pager_num-1)/2
-                end_index = self.current_page + (self.pager_num+1)/2
-                if (self.current_page + (self.pager_num-1)/2) > self.total_count:
+                start_index = self.current_page - (self.pager_num - 1) / 2
+                end_index = self.current_page + (self.pager_num + 1) / 2
+                if (self.current_page + (self.pager_num - 1) / 2) > self.total_count:
                     end_index = self.total_count + 1
                     start_index = self.total_count - self.pager_num + 1
 
         if self.current_page == 1:
             prev = '<a class="page" href="javascript:void(0);">上一页</a>'
         else:
-            prev = '<a class="page" href="%s?p=%s">上一页</a>' %(base_url,self.current_page-1,)
+            prev = '<a class="page" href="%s?p=%s">上一页</a>' % (base_url, self.current_page - 1,)
         page_list.append(prev)
 
-        for i in range(int(start_index),int(end_index)):
-            if i ==self.current_page:
-                temp = '<a class="page active" href="%s?p=%s">%s</a>' %(base_url,i,i)
+        for i in range(int(start_index), int(end_index)):
+            if i == self.current_page:
+                temp = '<a class="page active" href="%s?p=%s">%s</a>' % (base_url, i, i)
             else:
-                temp = '<a class="page" href="%s?p=%s">%s</a>' %(base_url,i,i)
+                temp = '<a class="page" href="%s?p=%s">%s</a>' % (base_url, i, i)
             page_list.append(temp)
 
         if self.current_page == self.total_count:
             nex = '<a class="page" href="javascript:void(0);">下一页</a>'
         else:
-            nex = '<a class="page" href="%s?p=%s">下一页</a>' %(base_url,self.current_page+1,)
+            nex = '<a class="page" href="%s?p=%s">下一页</a>' % (base_url, self.current_page + 1,)
         page_list.append(nex)
 
         jump = """
@@ -65,7 +68,7 @@ class Page:
                 location.href = base + val;
             }
         </script>
-        """ %(base_url,)
+        """ % (base_url,)
 
         page_list.append(jump)
 

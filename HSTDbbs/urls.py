@@ -17,8 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from app import views
 
-
 urlpatterns = [
+    url(r'^$', views.home),
     url(r'^admin/', admin.site.urls),
     url(r'^index.html/$', views.index),
     url(r'^check_code.html/$', views.checkcode),

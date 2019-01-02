@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8fwqirf)n_=eg-epz-rw7__#c)vngk=+l1l59nz^&nb7ow$z&-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["120.77.220.239"]
 
 
 # Application definition
@@ -93,9 +93,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangodb',
         'USER': "root",
-        "PASSWORD":"pqc19960320",
-        "HOST":"127.0.0.1",
-        "PORT":"3306"
+        "PASSWORD": "pqc19960320",
+        "HOST": "120.77.220.239",
+        "PORT": "3306"
     }
 }
 
@@ -137,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=(
-os.path.join(BASE_DIR,"static"),
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, "static"),
 )
-SESSION_SAVE_EVERY_REQUEST=True
+SESSION_SAVE_EVERY_REQUEST = True

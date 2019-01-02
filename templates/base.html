@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery.ui.css">
     <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/plugins/summernote/dist/summernote.css">
+    <link rel="stylesheet" type="text/css" href="/static/plugins/summernote/summernote.css">
 
     <link rel="stylesheet" type="text/css" href="/static/css/mycss/for_base.css">
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico"/>
@@ -132,23 +132,23 @@
                             <span class="star">*</span>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>
-                        <div class="col-sm-4">
-                             <span class="glyphicon glyphicon-cog form-control-feedback "></span>
-                            <input id="reg_checkcode" name="checkcode" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <div class="col-sm-4">
-                                <img src="/check_code.html/" id="img_check_reg">
-                            </div>
-                            <div class="col-sm-1">
-                                <span class="star">*</span>
-                            </div>
-                        </div>
-                        <br/><br/>
-                        <div style="text-indent: 335px">点击图片更换验证码</div>
-                    </div>
+{#                    <div class="form-group has-feedback">#}
+{#                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>#}
+{#                        <div class="col-sm-4">#}
+{#                             <span class="glyphicon glyphicon-cog form-control-feedback "></span>#}
+{#                            <input id="reg_checkcode" name="checkcode" type="text" class="form-control">#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            <div class="col-sm-4">#}
+{#                                <img src="/check_code.html/" id="img_check_reg">#}
+{#                            </div>#}
+{#                            <div class="col-sm-1">#}
+{#                                <span class="star">*</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <br/><br/>#}
+{#                        <div style="text-indent: 335px">点击图片更换验证码</div>#}
+{#                    </div>#}
                 </form>
             </div>
             <div class="modal-footer">
@@ -191,23 +191,23 @@
                             <span class="star">*</span>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>
-                        <div class="col-sm-4">
-                            <input id="log_checkcode" name="checkcode" type="text" class="form-control">
-                            <span class="glyphicon glyphicon-cog form-control-feedback"></span>
-                        </div>
-                        <div>
-                            <div class="col-sm-4">
-                                <img src="/check_code.html/" id="img_check_reg">
-                            </div>
-                            <div class="col-sm-1">
-                                <span class="star">*</span>
-                            </div>
-                        </div>
-                        <br/><br/>
-                        <div style="text-indent: 335px">点击图片更换验证码</div>
-                    </div>
+{#                    <div class="form-group has-feedback">#}
+{#                        <label class="col-sm-2 control-label" for="reg_checkcode">验证码</label>#}
+{#                        <div class="col-sm-4">#}
+{#                            <input id="log_checkcode" name="checkcode" type="text" class="form-control">#}
+{#                            <span class="glyphicon glyphicon-cog form-control-feedback"></span>#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            <div class="col-sm-4">#}
+{#                                <img src="/check_code.html/" id="img_check_reg">#}
+{#                            </div>#}
+{#                            <div class="col-sm-1">#}
+{#                                <span class="star">*</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <br/><br/>#}
+{#                        <div style="text-indent: 335px">点击图片更换验证码</div>#}
+{#                    </div>#}
                 </form>
             </div>
             <div class="modal-footer">
@@ -331,9 +331,11 @@
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     <script type="text/javascript" src="/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/plugins/kindeditor/kindeditor-all-min.js"></script>
-    <script type="text/javascript" src="/static/plugins/summernote/dist/summernote.min.js"></script>
-    <script type="text/javascript" src="/static/plugins/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/plugins/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/summernote/lang/summernote-zh-CN.js"></script>
     <script type="text/javascript" src="/static/js/myjs/for_base.js"></script>
+    <script type="text/javascript" src="/static/js/myjs/for_index.js"></script>
+    <script type="text/javascript" src="/static/js/myjs/for_personal_backend.js"></script>
     {% block js %}{% endblock %}
 <div id="error">请登录后操作！</div>
 <div id="loading">数据交互中...</div>

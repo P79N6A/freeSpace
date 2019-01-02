@@ -16,7 +16,7 @@ $(function () {
 
 
 
-//初始化fileinput控件（第一次初始化）
+    //初始化fileinput控件（第一次初始化）
     $('#file-Portrait').fileinput({
         language: 'zh', //设置语言
         uploadUrl: "/upload_avatar.html/", //上传的地址
@@ -34,7 +34,7 @@ $(function () {
 
 
     $(".fileinput-upload-button").click(function () {
-
+        console.log("hello");
         $.post("/upload_avatar.html/", "fackinfo", function (json) {
             var data = $.parseJSON(json);
             if (data) {

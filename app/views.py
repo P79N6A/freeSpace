@@ -8,7 +8,12 @@ from utils.password_md5 import get_hash
 from validateCodeTool import create_validate_code
 from django.shortcuts import render, HttpResponse, redirect
 from utils.current_user import get_current_user_name, get_current_user_object
+
+
 # Create your views here.
+def home(request):
+    return redirect("/index.html")
+
 
 def checkcode(request):
     """
@@ -24,7 +29,6 @@ def checkcode(request):
     img.save(stream, "PNG")
     request.session["CheckCode"] = code
     return HttpResponse(stream.getvalue())
-
 
 
 def is_user(request):
@@ -54,9 +58,9 @@ def index(request):
     blogs = models.Blog.objects.all().order_by("-create_time")
     questions = models.Question.objects.all().order_by("-create_time")
     return render(request, "index.html", {
-                                        "blogs": blogs,
-                                        "questions": questions,
-                                        "user": user})
+        "blogs": blogs,
+        "questions": questions,
+        "user": user})
 
 
 def register(request):
@@ -67,7 +71,6 @@ def register(request):
     user = models.User(nickname=nickname, password_hash=get_hash(password), email=email)
     user.save()
     return HttpResponse("true")
-
 
 
 def login_check(request):
